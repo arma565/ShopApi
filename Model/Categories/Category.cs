@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 public class Category
 {
     private int id = 0;
@@ -10,16 +12,19 @@ public class Category
         get => id;
         set => id = value;
     }
+    [Required]
     public string Title
     {
         get => title;
         set => title = value;
     }
+    [Required]
     public string Description
     {
         get => description;
         set => description = value;
     }
+    [Required]
     public string Icon
     {
         get => icon;
