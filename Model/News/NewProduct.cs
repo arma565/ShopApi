@@ -1,4 +1,4 @@
-public class News
+public class NewProduct
 {
     int id = 0;
     string title = "";
