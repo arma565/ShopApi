@@ -50,9 +50,9 @@ public class ShopService(AppDbContext context)
     /// by this catId we can fetch products from db 
     /// </param>
     /// <returns>
-    /// Return a product model
+    /// Return products using catId
     /// </returns>
-    public async Task<IEnumerable<Product>> GetProductCategory(string catId) => await _context.Products.Where(p => p.CatId == catId).AsNoTracking().ToListAsync();
+    public async Task<IEnumerable<Product>> GetProducts(string catId) => await _context.Products.Where(p => p.CatId == catId).AsNoTracking().ToListAsync();
 
     /// <summary>
     /// Get home page products items
@@ -69,6 +69,68 @@ public class ShopService(AppDbContext context)
         var amazingOffers = await _context.Products.Where(p => p.CatId == "7").AsNoTracking().ToListAsync();
         return new BaseHome { NewProduct = newProducts, Mobiles = mobile, MakeupList = makeup, Discounts = discounts, AmazingOffers = amazingOffers };
     }
+
+    /// <summary>
+    /// Get brand using id
+    /// </summary>
+    /// <param name="id">
+    /// require to fetch brand
+    /// </param>
+    /// <returns>
+    /// retrun brand related to id
+    /// </returns>
+    public async Task<Brand?> GetBrand(int id) => await _context.Brands.AsNoTracking().SingleOrDefaultAsync(b => b.Id == id);
+
+    /// <summary>
+    /// Get category using id
+    /// </summary>
+    /// <param name="id">
+    /// require to fetch category
+    /// </param>
+    /// <returns>
+    /// retrun category related to id
+    /// </returns>
+    public async Task<Category?> GetCategory(int id) => await _context.Categories.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
+
+    /// <summary>
+    /// Get gallery using id
+    /// </summary>
+    /// <param name="id">
+    /// require to fetch gallery
+    /// </param>
+    /// <returns>
+    /// retrun gallery related to id
+    /// </returns>
+    public async Task<Gallery?> GetGallery(int id) => await _context.Galleries.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
+
+    /// <summary>
+    /// Get newProduct using id
+    /// </summary>
+    /// <param name="id">
+    /// require to fetch newProduct
+    /// </param>
+    /// <returns>
+    /// retrun newProduct related to id
+    /// </returns>
+    public async Task<NewProduct?> GetNewProduct(int id) => await _context.NewProducts.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
+
+    /// <summary>
+    /// Get product using id
+    /// </summary>
+    /// <param name="id">
+    /// require to fetch product
+    /// </param>
+    /// <returns>
+    /// retrun product related to id
+    /// </returns>
+    public async Task<Product?> GetProduct(int id) => await _context.Products.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
+
+    public async Task<bool> IsBrandAvailable(int id) => await _context.Brands.FindAsync(id) != null;
+    public async Task<bool> IsCategoryAvailable(int id) => await _context.Categories.FindAsync(id) != null;
+    public async Task<bool> IsGalleryAvailable(int id) => await _context.Galleries.FindAsync(id) != null;
+    public async Task<bool> IsNewProductAvailable(int id) => await _context.NewProducts.FindAsync(id) != null;
+    public async Task<bool> IsProductAvailable(int id) => await _context.Products.FindAsync(id) != null;
+
     #endregion
 
     #region Add
@@ -81,7 +143,7 @@ public class ShopService(AppDbContext context)
     /// <returns>
     /// added brand
     /// </returns>
-    public async Task<Brand> AddBrands(Brand brand)
+    private async Task<Brand> AddBrand(Brand brand)
     {
         await _context.Brands.AddAsync(brand);
         await _context.SaveChangesAsync();
@@ -148,6 +210,7 @@ public class ShopService(AppDbContext context)
     public async Task<Product> AddProduct(Product product)
     {
         await _context.Products.AddAsync(product);
+        await AddBrand( new Brand { ProductBrand = product.Brand });
         await _context.SaveChangesAsync();
         return product;
     }
@@ -160,7 +223,7 @@ public class ShopService(AppDbContext context)
     /// <param name="brand">
     /// brand to be update
     /// </param>
-    public async Task UpdateBrands(Brand brand)
+    public async Task UpdateBrand(Brand brand)
     {
         _context.Brands.Update(brand);
         await _context.SaveChangesAsync();
