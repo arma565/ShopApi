@@ -1,40 +1,29 @@
 using System.ComponentModel.DataAnnotations;
-
+using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 public class Product
 {
-    int id = 0;
-    string catId = "0";
-    string catName = "";
-    string title = "";
-    string brand = "";
-    bool isWarranty = false;
-    int count = 0;
-    string shortDescription = "";
-    string fullDescription = "";
-    bool isSpecial = false;
-    string discount = "";
-    float rate = 0.0f;
-    string price = "";
-    string icon = "";
-    IEnumerable<Gallery> galleries = new List<Gallery>();
+    private int id = 0;
+    private string title = "";
+    private bool isWarranty = false;
+    private int count = 0;
+    private string shortDescription = "";
+    private string fullDescription = "";
+    private bool isSpecial = false;
+    private string discount = "";
+    private float rate = 0.0f;
+    private string price = "";
+    private string icon = "";
+    private Category? category;
+    private Brand? brand;
+     private int brand_id;
+    private int cat_id;
+    private IEnumerable<Gallery> galleries = new List<Gallery>();
 
     public int Id
     {
         get => id;
         set => id = value;
-    }
-
-    [Required]
-    public string CatId
-    {
-        get => catId;
-        set => catId = value;
-    }
-    [Required]
-    public string CatName
-    {
-        get => catName;
-        set => catName = value;
     }
     [Required]
     public string Title
@@ -43,13 +32,7 @@ public class Product
         set => title = value;
     }
     [Required]
-    public string Brand
-    {
-        get => brand;
-        set => brand = value;
-    }
-    [Required]
-    public bool Warranty
+    public bool IsWarranty
     {
         get => isWarranty;
         set => isWarranty = value;
@@ -72,9 +55,8 @@ public class Product
         get => fullDescription;
         set => fullDescription = value;
     }
-
     [Required]
-    public bool Special
+    public bool IsSpecial
     {
         get => isSpecial;
         set => isSpecial = value;
@@ -97,16 +79,41 @@ public class Product
         get => price;
         set => price = value;
     }
-    [Required]
+    [SwaggerSchema(Description = "The product icon", ReadOnly = true)]
     public string Icon
     {
         get => icon;
         set => icon = value;
     }
     [Required]
+    public int CatId
+    {
+        get => cat_id;
+        set => cat_id = value;
+    }
+    [Required]
+    public int BrandId
+    {
+        get => brand_id;
+        set => brand_id = value;
+    }
+    [SwaggerSchema(Description = "Category navigation", ReadOnly = true)]
+    public Category? Category
+    {
+        get => category;
+        set => category = value;
+    }
+    [SwaggerSchema(Description = "Brand navigation", ReadOnly = true)]
+    public Brand? Brand
+    {
+        get => brand;
+        set => brand = value;
+    }
+    [SwaggerSchema(Description = "Gallery navigation", ReadOnly = true)]
     public IEnumerable<Gallery> Galleries
     {
         get => galleries;
         set => galleries = value;
     }
+
 }

@@ -1,23 +1,38 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 var MyAllowSpeceficiOrigins = "_shop";
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options=>{
-    options.AddPolicy(MyAllowSpeceficiOrigins , policy=>{
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpeceficiOrigins, policy =>
+    {
         policy.WithOrigins("http://localhost:5047").AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
     });
 });
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("ShopSqlConnection")));
-builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopSqlConnection")));
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+});
 builder.Services.AddScoped<ShopService>();
+builder.Services.AddScoped<DatabaseService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ImageService>();
+builder.Services.AddScoped<IImageService, ImageService>();
+builder
+    .Services.AddControllers()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+    options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

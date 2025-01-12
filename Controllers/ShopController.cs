@@ -5,11 +5,150 @@ using Microsoft.AspNetCore.Mvc;
 public class ShopController : ControllerBase
 {
     private readonly ShopService _service;
+    private readonly ImageService _imageService;
     private readonly ILogger<ShopService> _logger;
-    public ShopController(ILogger<ShopService> logger, ShopService service)
+
+    public ShopController(ShopService service,
+    ImageService imageService,
+    ILogger<ShopService> logger)
     {
+        _imageService = imageService;
         _service = service;
         _logger = logger;
+    }
+
+    [HttpPost("gallery/upload/{productId}")]
+    public async Task<IActionResult> UploadGalleryImage(int productId, IFormFile image)
+    {
+        var product = await _service.GetProduct(productId);
+        if (product == null) return NotFound("Product not found!");
+        if (image != null || image!.Length > 0)
+        {
+            var imageUrl = await _imageService.UploadImage(image);
+            // Add the image to the gallery
+            var gallery = new Gallery
+            {
+                ProductId = productId,
+                Img = imageUrl!
+            };
+            var res = await _service.AddGallery(gallery);
+            return Ok(res);
+        }
+        else
+        {
+            return BadRequest("Image not provided!");
+        }
+
+    }
+
+    [HttpPost("category/upload/{id}")]
+    public async Task<IActionResult> UploadCategoryImage(int id, IFormFile image)
+    {
+        var category = await _service.GetCategory(id);
+        if (category == null) return NotFound("Category not found!");
+        if (image != null || image!.Length > 0)
+        {
+            var imageUrl = await _imageService.UploadImage(image);
+            // Update category
+            category.Icon = imageUrl;
+            await _service.UpdateCategory(category);
+            return NoContent();
+        }
+        else
+        {
+            return BadRequest("Image not provided!");
+        }
+    }
+
+    [HttpPost("newProduct/upload/{id}")]
+    public async Task<IActionResult> UploadNewProductImage(int id, IFormFile image)
+    {
+        var newProduct = await _service.GetNewProduct(id);
+        if (newProduct == null) return NotFound("NewProduct not found!");
+        if (image != null || image!.Length > 0)
+        {
+            var imageUrl = await _imageService.UploadImage(image);
+            // Update category
+            newProduct.Icon = imageUrl;
+            await _service.UpdateNewProduct(newProduct);
+            return NoContent();
+        }
+        else
+        {
+            return BadRequest("Image not provided!");
+        }
+    }
+
+    [HttpPost("product/upload/{id}")]
+    public async Task<IActionResult> UploadProductImage(int id, IFormFile image)
+    {
+        var product = await _service.GetProduct(id);
+        if (product == null) return NotFound("Product not found!");
+        if (image != null || image!.Length > 0)
+        {
+            var imageUrl = await _imageService.UploadImage(image);
+            // Update category
+            product.Icon = imageUrl;
+            await _service.UpdateProduct(product);
+            return NoContent();
+        }
+        else
+        {
+            return BadRequest("Image not provided!");
+        }
+    }
+
+    [HttpGet("download/{url}")]
+    public IActionResult DownloadImage(string url)
+    {
+        if (string.IsNullOrEmpty(url) || !Uri.IsWellFormedUriString(url, UriKind.Absolute))
+        {
+            return BadRequest("Invalid URL");
+        }
+        Uri uri = new Uri(url);
+        var fileName = Path.GetFileName(uri.LocalPath);
+        Console.WriteLine(fileName);
+        //check if filename is not empty or null
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return BadRequest("File name can't be empty!");
+        }
+        if (fileName.Contains("..") || Path.GetInvalidFileNameChars().Any(fileName.Contains))
+        {
+            return BadRequest("Invalid file name.");
+        }
+
+        //check directory if exist
+        var imageDir = Path.Combine("wwwroot", "images");
+        var filePath = Path.Combine(
+            imageDir,
+            fileName.Trim().Replace(" ", "").Replace("-", "").Replace("_", "")
+        );
+        if (!System.IO.File.Exists(filePath))
+        {
+            return NotFound("File not found");
+        }
+        // Get the file's content type
+        var fileExtension = Path.GetExtension(fileName).ToLower();
+        var contentType = fileExtension switch
+        {
+            ".jpg" or ".jpeg" => "image/jpeg",
+            ".png" => "image/png",
+            _ => "application/octet-stream",
+        };
+
+        try
+        {
+            // Open the file stream asynchronously
+            FileStream stream = _imageService.ReadImage(filePath);
+            // Return the file stream as FileContentResult
+            return File(stream, contentType, fileName);
+        }
+        catch (IOException ex)
+        {
+            // Log the error if needed
+            return StatusCode(500, "Error reading the file!. Error =" + ex.Message);
+        }
     }
 
     #region Get
@@ -17,13 +156,13 @@ public class ShopController : ControllerBase
     public async Task<BaseCategories> GetBaseCategories() => await _service.GetBaseCategories();
 
     [HttpGet("shop/getProductCategories")]
-    public async Task<ProductCategory> GetProductCategories() => await _service.GetProductCategories();
+    public async Task<IEnumerable<ProductCategory>> GetProductCategories() => [..await _service.GetProductCategories()];
 
     [HttpGet("shop/getNewProducts")]
     public async Task<IEnumerable<NewProduct>> GetNewProducts() => await _service.GetNewProducts();
 
     [HttpPost("shop/getProducts/{catId}")]
-    public async Task<IEnumerable<Product>> GetProducts(string catId) => await _service.GetProducts(catId);
+    public async Task<IEnumerable<Product>> GetProducts(int catId) => await _service.GetProducts(catId);
 
     [HttpGet("shop/getHome")]
     public async Task<BaseHome> GetHome() => await _service.GetHome();
@@ -110,6 +249,17 @@ public class ShopController : ControllerBase
     #endregion
 
     #region Add
+    [HttpPost("shop/addBrand")]
+    public async Task<IActionResult> AddBrand([FromBody] Brand brand)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var addedBrand = await _service.AddBrand(brand);
+        return CreatedAtAction(nameof(GetBrand), new { id = addedBrand.Id }, addedBrand);
+    }
     [HttpPost("shop/addCategory")]
     public async Task<IActionResult> AddCategory([FromBody] Category category)
     {
@@ -117,21 +267,8 @@ public class ShopController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
         var addedCategory = await _service.AddCategory(category);
         return CreatedAtAction(nameof(GetCategory), new { id = addedCategory.Id }, addedCategory);
-    }
-
-    [HttpPost("shop/addGallery")]
-    public async Task<IActionResult> AddGallery([FromBody] Gallery gallery)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        var addedGallery = await _service.AddGallery(gallery);
-        return CreatedAtAction(nameof(GetGallery), new { id = addedGallery.Id }, addedGallery);
     }
 
     [HttpPost("shop/addNewProduct")]
@@ -141,7 +278,6 @@ public class ShopController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
         var addedNewproduct = await _service.AddNewProduct(newProduct);
         return CreatedAtAction(nameof(GetNewProduct), new { id = addedNewproduct.Id }, addedNewproduct);
     }
@@ -153,7 +289,6 @@ public class ShopController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
         var addedProduct = await _service.AddProduct(product);
         return CreatedAtAction(nameof(GetProduct), new { id = addedProduct.Id }, addedProduct);
     }
@@ -167,7 +302,7 @@ public class ShopController : ControllerBase
         {
             return BadRequest("Updating brand is not possible without id!");
         }
-        if (await _service.IsBrandAvailable(brand.Id))
+        if (!await _service.IsBrandAvailable(brand))
         {
             return NotFound("Brand not found!");
         }
@@ -186,7 +321,7 @@ public class ShopController : ControllerBase
         {
             return BadRequest("Updating category is not possible without id!");
         }
-        if (await _service.IsCategoryAvailable(category.Id))
+        if (!await _service.IsCategoryAvailable(category))
         {
             return NotFound("Category not found!");
         }
@@ -205,7 +340,7 @@ public class ShopController : ControllerBase
         {
             return BadRequest("Updating gallery is not possible without id!");
         }
-        if (await _service.IsGalleryAvailable(gallery.Id))
+        if (!await _service.IsGalleryAvailable(gallery))
         {
             return NotFound("Gallery not found!");
         }
@@ -224,7 +359,7 @@ public class ShopController : ControllerBase
         {
             return BadRequest("Updating newProduct is not possible without id!");
         }
-        if (await _service.IsNewProductAvailable(newProduct.Id))
+        if (!await _service.IsNewProductAvailable(newProduct))
         {
             return NotFound("NewProduct not found!");
         }
@@ -243,7 +378,7 @@ public class ShopController : ControllerBase
         {
             return BadRequest("Updating product is not possible without id!");
         }
-        if (await _service.IsProductAvailable(product.Id))
+        if (!await _service.IsProductAvailable(product))
         {
             return NotFound("Product not found!");
         }

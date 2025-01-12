@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-public class ShopService(AppDbContext context)
+public class ShopService(AppDbContext context, DatabaseService databaseService)
 {
     private readonly AppDbContext _context = context;
+    private readonly DatabaseService _databaseService = databaseService;
     #region Get
     /// <summary>
     /// Get BaseCategories include categories and brands
@@ -25,14 +24,19 @@ public class ShopService(AppDbContext context)
     /// <returns>
     /// Return a ProductCategory model
     /// </returns>
-    public async Task<ProductCategory> GetProductCategories()
+    public async Task<IEnumerable<ProductCategory>> GetProductCategories()
     {
-        var mobile = await _context.Products.Where(p => p.CatId == "1").AsNoTracking().ToListAsync();
-        var makeup = await _context.Products.Where(p => p.CatId == "2").AsNoTracking().ToListAsync();
-        var trends = await _context.Products.Where(p => p.CatId == "3").AsNoTracking().ToListAsync();
-        var sports = await _context.Products.Where(p => p.CatId == "4").AsNoTracking().ToListAsync();
-        var home = await _context.Products.Where(p => p.CatId == "5").AsNoTracking().ToListAsync();
-        return new ProductCategory { Mobiles = mobile, MakeupList = makeup, Trends = trends, Sports = sports, Home = home };
+        var categories = await _context.Categories.Include(c => c.Products).AsNoTracking().ToListAsync();
+        var productCategoryList = new List<ProductCategory>();
+        foreach (var category in categories)
+        {
+            productCategoryList.Add(new ProductCategory
+            {
+                CatName = category.Title,
+                Products = category.Products
+            });
+        }
+        return productCategoryList;
     }
 
     /// <summary>
@@ -52,7 +56,7 @@ public class ShopService(AppDbContext context)
     /// <returns>
     /// Return products using catId
     /// </returns>
-    public async Task<IEnumerable<Product>> GetProducts(string catId) => await _context.Products.Where(p => p.CatId == catId).AsNoTracking().ToListAsync();
+    public async Task<IEnumerable<Product>> GetProducts(int catId) => await _context.Products.Where(p => p.CatId == catId).AsNoTracking().ToListAsync();
 
     /// <summary>
     /// Get home page products items
@@ -63,11 +67,17 @@ public class ShopService(AppDbContext context)
     public async Task<BaseHome> GetHome()
     {
         var newProducts = await _context.NewProducts.AsNoTracking().ToListAsync();
-        var mobile = await _context.Products.Where(p => p.CatId == "1").AsNoTracking().ToListAsync();
-        var makeup = await _context.Products.Where(p => p.CatId == "2").AsNoTracking().ToListAsync();
-        var discounts = await _context.Products.Where(p => p.CatId == "6").AsNoTracking().ToListAsync();
-        var amazingOffers = await _context.Products.Where(p => p.CatId == "7").AsNoTracking().ToListAsync();
-        return new BaseHome { NewProduct = newProducts, Mobiles = mobile, MakeupList = makeup, Discounts = discounts, AmazingOffers = amazingOffers };
+        var categories = await _context.Categories.Include(c => c.Products).AsNoTracking().ToListAsync();
+         var productCategoryList = new List<ProductCategory>();
+        foreach (var category in categories)
+        {
+            productCategoryList.Add(new ProductCategory
+            {
+                CatName = category.Title,
+                Products = category.Products
+            });
+        }
+        return new BaseHome { NewProduct = newProducts, ProductCategories = productCategoryList };
     }
 
     /// <summary>
@@ -124,16 +134,28 @@ public class ShopService(AppDbContext context)
     /// retrun product related to id
     /// </returns>
     public async Task<Product?> GetProduct(int id) => await _context.Products.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
-
-    public async Task<bool> IsBrandAvailable(int id) => await _context.Brands.FindAsync(id) != null;
-    public async Task<bool> IsCategoryAvailable(int id) => await _context.Categories.FindAsync(id) != null;
-    public async Task<bool> IsGalleryAvailable(int id) => await _context.Galleries.FindAsync(id) != null;
-    public async Task<bool> IsNewProductAvailable(int id) => await _context.NewProducts.FindAsync(id) != null;
-    public async Task<bool> IsProductAvailable(int id) => await _context.Products.FindAsync(id) != null;
+    public async Task<bool> IsBrandAvailable(Brand brand) => await _context.Brands.AsNoTracking().ContainsAsync(brand);
+    public async Task<bool> IsCategoryAvailable(Category category) => await _context.Categories.AsNoTracking().ContainsAsync(category);
+    public async Task<bool> IsGalleryAvailable(Gallery gallery) => await _context.Galleries.AsNoTracking().ContainsAsync(gallery);
+    public async Task<bool> IsNewProductAvailable(NewProduct newProduct) => await _context.NewProducts.AsNoTracking().ContainsAsync(newProduct);
+    public async Task<bool> IsProductAvailable(Product product) => await _context.Products.AsNoTracking().ContainsAsync(product);
 
     #endregion
 
     #region Add
+    /// <summary>
+    /// Upload gallery image
+    /// </summary>
+    /// <param name="image">
+    /// 
+    /// </param>
+    /// <returns></returns>
+    public async Task<Gallery> AddGallery(Gallery gallery)
+    {
+        await _context.Galleries.AddAsync(gallery);
+        await _context.SaveChangesAsync();
+        return gallery;
+    }
     /// <summary>
     /// Add a brand to brands in database
     /// </summary>
@@ -143,7 +165,7 @@ public class ShopService(AppDbContext context)
     /// <returns>
     /// added brand
     /// </returns>
-    private async Task<Brand> AddBrand(Brand brand)
+    public async Task<Brand> AddBrand(Brand brand)
     {
         await _context.Brands.AddAsync(brand);
         await _context.SaveChangesAsync();
@@ -164,22 +186,6 @@ public class ShopService(AppDbContext context)
         await _context.Categories.AddAsync(category);
         await _context.SaveChangesAsync();
         return category;
-    }
-
-    /// <summary>
-    /// Add a gallery to db
-    /// </summary>
-    /// <param name="gallery">
-    /// gallery to be add
-    /// </param>
-    /// <returns>
-    /// added gallery
-    /// </returns>
-    public async Task<Gallery> AddGallery(Gallery gallery)
-    {
-        await _context.Galleries.AddAsync(gallery);
-        await _context.SaveChangesAsync();
-        return gallery;
     }
 
     /// <summary>
@@ -210,7 +216,6 @@ public class ShopService(AppDbContext context)
     public async Task<Product> AddProduct(Product product)
     {
         await _context.Products.AddAsync(product);
-        await AddBrand( new Brand { ProductBrand = product.Brand });
         await _context.SaveChangesAsync();
         return product;
     }
@@ -298,6 +303,7 @@ public class ShopService(AppDbContext context)
     {
         await _context.Brands.ExecuteDeleteAsync();
         await _context.SaveChangesAsync();
+        _databaseService.ResetIdentity(nameof(AppDbContext.Brands));
     }
 
     /// <summary>
@@ -319,6 +325,7 @@ public class ShopService(AppDbContext context)
     {
         await _context.Categories.ExecuteDeleteAsync();
         await _context.SaveChangesAsync();
+        _databaseService.ResetIdentity(nameof(AppDbContext.Categories));
     }
 
     /// <summary>
@@ -340,6 +347,7 @@ public class ShopService(AppDbContext context)
     {
         await _context.Galleries.ExecuteDeleteAsync();
         await _context.SaveChangesAsync();
+        _databaseService.ResetIdentity(nameof(AppDbContext.Galleries));
     }
 
     /// <summary>
@@ -361,6 +369,7 @@ public class ShopService(AppDbContext context)
     {
         await _context.NewProducts.ExecuteDeleteAsync();
         await _context.SaveChangesAsync();
+        _databaseService.ResetIdentity(nameof(AppDbContext.NewProducts));
     }
 
     /// <summary>
@@ -382,6 +391,7 @@ public class ShopService(AppDbContext context)
     {
         await _context.Products.ExecuteDeleteAsync();
         await _context.SaveChangesAsync();
+        _databaseService.ResetIdentity(nameof(AppDbContext.Products));
     }
     #endregion
 }

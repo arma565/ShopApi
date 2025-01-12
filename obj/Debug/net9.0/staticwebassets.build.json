@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C/dntClKuJRX4sZ9sCnRWJ/zM5x3C/X2JIkuycfyF8s=",
+  "Hash": "wH1Xj+vmQnUp+M9+lY+Ln8g6T97eB+D2a2VU62BmieY=",
   "Source": "Shop",
   "BasePath": "_content/Shop",
   "Mode": "Default",
@@ -16,6 +16,48 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png",
+      "SourceId": "Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\",
+      "BasePath": "_content/Shop",
+      "RelativePath": "images/1b7ca9fe-921a-484d-bdce-efb83db7e394#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krcdbp7cdm",
+      "Integrity": "4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png"
+    },
+    {
+      "Identity": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png",
+      "SourceId": "Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\",
+      "BasePath": "_content/Shop",
+      "RelativePath": "images/36dad59f-25ab-4034-930c-7553c2d8bd9d#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krcdbp7cdm",
+      "Integrity": "4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png"
+    },
     {
       "Identity": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\categories\\arayesh.jpg",
       "SourceId": "Shop",
@@ -7514,6 +7556,27 @@
       "OriginalItemSpec": "wwwroot\\images\\category\\sport\\20\\taranom-1-1.jpg"
     },
     {
+      "Identity": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png",
+      "SourceId": "Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\",
+      "BasePath": "_content/Shop",
+      "RelativePath": "images/d43f8fdb-1e20-453e-9abd-93347beac19c#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krcdbp7cdm",
+      "Integrity": "4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png"
+    },
+    {
       "Identity": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\home\\amazingOffer\\19\\3033mw-600x648.jpg",
       "SourceId": "Shop",
       "SourceType": "Discovered",
@@ -9363,6 +9426,170 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "images/1b7ca9fe-921a-484d-bdce-efb83db7e394.krcdbp7cdm.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 07:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krcdbp7cdm"
+        },
+        {
+          "Name": "label",
+          "Value": "images/1b7ca9fe-921a-484d-bdce-efb83db7e394.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
+        }
+      ]
+    },
+    {
+      "Route": "images/1b7ca9fe-921a-484d-bdce-efb83db7e394.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 07:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
+        }
+      ]
+    },
+    {
+      "Route": "images/36dad59f-25ab-4034-930c-7553c2d8bd9d.krcdbp7cdm.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 05:18:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krcdbp7cdm"
+        },
+        {
+          "Name": "label",
+          "Value": "images/36dad59f-25ab-4034-930c-7553c2d8bd9d.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
+        }
+      ]
+    },
+    {
+      "Route": "images/36dad59f-25ab-4034-930c-7553c2d8bd9d.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 05:18:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
+        }
+      ]
+    },
     {
       "Route": "images/categories/arayesh.jpg",
       "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\categories\\arayesh.jpg",
@@ -38634,6 +38861,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-feDwmbCmIQ0Jp/s2spswAuGBzVv37TBZx8LMH45zbOw="
+        }
+      ]
+    },
+    {
+      "Route": "images/d43f8fdb-1e20-453e-9abd-93347beac19c.krcdbp7cdm.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 05:55:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krcdbp7cdm"
+        },
+        {
+          "Name": "label",
+          "Value": "images/d43f8fdb-1e20-453e-9abd-93347beac19c.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
+        }
+      ]
+    },
+    {
+      "Route": "images/d43f8fdb-1e20-453e-9abd-93347beac19c.png",
+      "AssetFile": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86974"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 11 Jan 2025 05:55:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4OAGlFAfKc9PB26A/lW+lCD56bQYEFBMMgOpmPOaEIY="
         }
       ]
     },

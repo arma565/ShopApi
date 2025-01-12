@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png",
+      "PackagePath": "staticwebassets\\images\\1b7ca9fe-921a-484d-bdce-efb83db7e394.png"
+    },
+    {
+      "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png",
+      "PackagePath": "staticwebassets\\images\\36dad59f-25ab-4034-930c-7553c2d8bd9d.png"
+    },
+    {
       "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\categories\\Fashion.jpg",
       "PackagePath": "staticwebassets\\images\\categories\\Fashion.jpg"
     },
@@ -1427,6 +1435,10 @@
     {
       "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\category\\sport\\20\\taranom-1-1.jpg",
       "PackagePath": "staticwebassets\\images\\category\\sport\\20\\taranom-1-1.jpg"
+    },
+    {
+      "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png",
+      "PackagePath": "staticwebassets\\images\\d43f8fdb-1e20-453e-9abd-93347beac19c.png"
     },
     {
       "Id": "D:\\Applications\\WebProgramming\\Back\\NetCore\\Projects\\Shop\\wwwroot\\images\\home\\amazingOffer\\19\\3033mw-600x648.jpg",

@@ -158,3 +158,4 @@ D:\Applications\WebProgramming\Back\NetCore\Projects\Shop\obj\Debug\net9.0\Shop.
 D:\Applications\WebProgramming\Back\NetCore\Projects\Shop\obj\Debug\net9.0\Shop.genruntimeconfig.cache
 D:\Applications\WebProgramming\Back\NetCore\Projects\Shop\obj\Debug\net9.0\ref\Shop.dll
 D:\Applications\WebProgramming\Back\NetCore\Projects\Shop\bin\Debug\net9.0\Shop.staticwebassets.runtime.json
+D:\Applications\WebProgramming\Back\NetCore\Projects\Shop\bin\Debug\net9.0\Swashbuckle.AspNetCore.Annotations.dll

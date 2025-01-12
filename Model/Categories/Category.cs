@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Swashbuckle.AspNetCore.Annotations;
 
 public class Category
 {
@@ -6,28 +7,30 @@ public class Category
     private string title = "";
     private string description = "";
     private string icon = "";
-
+    private ICollection<Product> products = new List<Product>();
+    
     public int Id
     {
         get => id;
         set => id = value;
     }
-    [Required]
     public string Title
     {
         get => title;
         set => title = value;
     }
-    [Required]
     public string Description
     {
         get => description;
         set => description = value;
     }
-    [Required]
+    [SwaggerSchema(Description = "Category icon", ReadOnly = true)]
     public string Icon
     {
         get => icon;
         set => icon = value;
     }
+    [SwaggerSchema(Description = "The products navigation", ReadOnly = true)]
+    public ICollection<Product> Products => products;
+
 }
