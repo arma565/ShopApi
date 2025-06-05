@@ -1,36 +1,41 @@
-using System.ComponentModel.DataAnnotations;
+using Shop.Model.Products;
 using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 
-public class Category
+namespace Shop.Model.Categories
 {
-    private int id = 0;
-    private string title = "";
-    private string description = "";
-    private string icon = "";
-    private ICollection<Product> products = new List<Product>();
-    
-    public int Id
+    public class Category
     {
-        get => id;
-        set => id = value;
-    }
-    public string Title
-    {
-        get => title;
-        set => title = value;
-    }
-    public string Description
-    {
-        get => description;
-        set => description = value;
-    }
-    [SwaggerSchema(Description = "Category icon", ReadOnly = true)]
-    public string Icon
-    {
-        get => icon;
-        set => icon = value;
-    }
-    [SwaggerSchema(Description = "The products navigation", ReadOnly = true)]
-    public ICollection<Product> Products => products;
+        private Guid id = new();
+        private string title = "";
+        private string description = "";
+        private string icon = "";
+        private ICollection<Product> products = [];
 
+        public Guid Id
+        {
+            get => id;
+            set => id = value;
+        }
+        [Required]
+        public string Title
+        {
+            get => title;
+            set => title = value;
+        }
+        public string Description
+        {
+            get => description;
+            set => description = value;
+        }
+        [SwaggerSchema(Description = "Category icon", ReadOnly = true)]
+        public string Icon
+        {
+            get => icon;
+            set => icon = value;
+        }
+
+        [SwaggerSchema(Description = "The products navigation", ReadOnly = true)]
+        public ICollection<Product> Products { get => products; set => products = value; }
+    }
 }

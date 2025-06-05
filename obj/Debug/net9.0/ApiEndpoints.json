@@ -1,0 +1,527 @@
+[
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UploadCategoryImage",
+    "RelativePath": "Shop/category/upload/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DownloadImage",
+    "RelativePath": "Shop/download",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "url",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UploadGalleryImage",
+    "RelativePath": "Shop/gallery/upload/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UploadProductImage",
+    "RelativePath": "Shop/product/upload/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "AddBrand",
+    "RelativePath": "Shop/shop/addBrand",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brand",
+        "Type": "Shop.Model.Brands.Brand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "AddCategory",
+    "RelativePath": "Shop/shop/addCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Shop.Model.Categories.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "AddProduct",
+    "RelativePath": "Shop/shop/addProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "Shop.Model.Products.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteAllBrands",
+    "RelativePath": "Shop/shop/deleteAllBrands",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteAllCategories",
+    "RelativePath": "Shop/shop/deleteAllCategories",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteAllGalleries",
+    "RelativePath": "Shop/shop/deleteAllGalleries",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteAllProducts",
+    "RelativePath": "Shop/shop/deleteAllProducts",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteBrand",
+    "RelativePath": "Shop/shop/deleteBrand/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteCategory",
+    "RelativePath": "Shop/shop/deleteCategory/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteGallery",
+    "RelativePath": "Shop/shop/deleteGallery/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "DeleteProduct",
+    "RelativePath": "Shop/shop/deleteProduct/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetBrand",
+    "RelativePath": "Shop/shop/getBrand/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shop.Model.Brands.Brand",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetBrands",
+    "RelativePath": "Shop/shop/getBrands",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetCategories",
+    "RelativePath": "Shop/shop/getCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Categories.Category, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetCategory",
+    "RelativePath": "Shop/shop/getCategory/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shop.Model.Brands.Brand",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetGallery",
+    "RelativePath": "Shop/shop/getGallery/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shop.Model.ProductCategories.Gallery.Gallery",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetHome",
+    "RelativePath": "Shop/shop/getHome",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Shop.Model.Main.Home",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetProduct",
+    "RelativePath": "Shop/shop/getProduct/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shop.Model.Products.Product",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetProductCategory",
+    "RelativePath": "Shop/shop/getProductCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.CategoryProducts.ProductCategory, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetPoducts",
+    "RelativePath": "Shop/shop/getProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "GetProducts",
+    "RelativePath": "Shop/shop/getProducts/{catId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "catId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Products.Product, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UpdateBrand",
+    "RelativePath": "Shop/shop/updateBrand",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brand",
+        "Type": "Shop.Model.Brands.Brand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UpdateCategory",
+    "RelativePath": "Shop/shop/updateCategory",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Shop.Model.Categories.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UpdateGallery",
+    "RelativePath": "Shop/shop/updateGallery",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gallery",
+        "Type": "Shop.Model.ProductCategories.Gallery.Gallery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shop.Controllers.ShopController",
+    "Method": "UpdateProduct",
+    "RelativePath": "Shop/shop/updateProduct",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "Shop.Model.Products.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

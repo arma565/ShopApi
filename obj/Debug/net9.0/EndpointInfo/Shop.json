@@ -1,0 +1,1159 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Shop",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Shop/gallery/upload/{productId}": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/category/upload/{id}": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/product/upload/{id}": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/download": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/getBrands": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getCategories": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getHome": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Home"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Home"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Home"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getProductCategory": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductCategory"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductCategory"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductCategory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getProducts": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Brand"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getBrand/{id}": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getCategory/{id}": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Brand"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getGallery/{id}": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gallery"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gallery"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gallery"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getProduct/{id}": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/getProducts/{catId}": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Shop/shop/addBrand": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/addCategory": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/addProduct": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/updateBrand": {
+      "put": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Brand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/updateCategory": {
+      "put": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/updateGallery": {
+      "put": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gallery"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gallery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gallery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gallery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/updateProduct": {
+      "put": {
+        "tags": [
+          "Shop"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteAllBrands": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteAllCategories": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteAllGalleries": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteAllProducts": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteBrand/{id}": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteCategory/{id}": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteGallery/{id}": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Shop/shop/deleteProduct/{id}": {
+      "delete": {
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Brand": {
+        "required": [
+          "productBrand"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productBrand": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "description": "Product navigation",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Category": {
+        "required": [
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "description": "Category icon",
+            "nullable": true,
+            "readOnly": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "description": "The products navigation",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gallery": {
+        "required": [
+          "img",
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "img": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Home": {
+        "type": "object",
+        "properties": {
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "nullable": true
+          },
+          "newProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Product": {
+        "required": [
+          "brandId",
+          "catId",
+          "count",
+          "discount",
+          "fullDescription",
+          "isSpecial",
+          "isWarranty",
+          "price",
+          "rate",
+          "shortDescription",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isWarranty": {
+            "type": "boolean"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shortDescription": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "fullDescription": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isSpecial": {
+            "type": "boolean"
+          },
+          "discount": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rate": {
+            "type": "number",
+            "format": "float"
+          },
+          "price": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "icon": {
+            "type": "string",
+            "description": "The product icon",
+            "nullable": true,
+            "readOnly": true
+          },
+          "catId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "brandId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand"
+          },
+          "galleries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Gallery"
+            },
+            "description": "Gallery navigation",
+            "nullable": true,
+            "readOnly": true
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductCategory": {
+        "type": "object",
+        "properties": {
+          "catName": {
+            "type": "string",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

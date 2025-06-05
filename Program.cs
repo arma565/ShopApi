@@ -1,5 +1,6 @@
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Shop.Data;
+using Shop.Service;
 
 var MyAllowSpeceficiOrigins = "_shop";
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:5047").AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
     });
 });
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopSqlConnection")));
@@ -18,15 +20,12 @@ builder.Services.AddSwaggerGen(c =>
     c.EnableAnnotations();
 });
 builder.Services.AddScoped<ShopService>();
-builder.Services.AddScoped<DatabaseService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ImageService>();
 builder.Services.AddScoped<IImageService, ImageService>();
-builder
-    .Services.AddControllers()
-    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
-    options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

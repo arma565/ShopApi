@@ -1,34 +1,42 @@
 using Microsoft.EntityFrameworkCore;
+using Shop.Model.Brands;
+using Shop.Model.Categories;
+using Shop.Model.ProductCategories.Gallery;
+using Shop.Model.Products;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+namespace Shop.Data
 {
-    public DbSet<Brand> Brands => Set<Brand>();
-    public DbSet<Category> Categories => Set<Category>();
-    public DbSet<Gallery> Galleries => Set<Gallery>();
-    public DbSet<NewProduct> NewProducts => Set<NewProduct>();
-    public DbSet<Product> Products => Set<Product>();
-
-    protected override void OnModelCreating(ModelBuilder builder)
+    public class AppDbContext : DbContext
     {
-        builder.Entity<Product>()
-        .HasMany(p => p.Galleries)
-        .WithOne(g => g.Product)
-        .HasForeignKey(g => g.ProductId)
-        .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<Product>()
-        .HasOne(p => p.Category)
-        .WithMany(c => c.Products)
-        .HasForeignKey(p => p.CatId)
-        .HasPrincipalKey(c => c.Id);
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        builder.Entity<Product>()
-        .HasOne(p => p.Brand)
-        .WithMany(b => b.Products)
-        .HasForeignKey(p => p.BrandId)
-        .HasPrincipalKey(b => b.Id);
+        public DbSet<Brand> Brands { set; get; }
+        public DbSet<Category> Categories { set; get; }
+        public DbSet<Gallery> Galleries { set; get; }
+        public DbSet<Product> Products { set; get; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Product>()
+            .HasMany(p => p.Galleries)
+            .WithOne(g => g.Product)
+            .HasForeignKey(g => g.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        base.OnModelCreating(builder);
+            builder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CatId)
+            .HasPrincipalKey(c => c.Id);
+
+            builder.Entity<Product>()
+            .HasOne(p => p.Brand)
+            .WithMany(b => b.Products)
+            .HasForeignKey(p => p.BrandId)
+            .HasPrincipalKey(b => b.Id);
+
+            base.OnModelCreating(builder);
+        }
     }
 }
