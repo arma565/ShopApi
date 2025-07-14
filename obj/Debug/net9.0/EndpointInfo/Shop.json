@@ -1375,7 +1375,6 @@
             "items": {
               "$ref": "#/components/schemas/Product"
             },
-            "description": "Product navigation",
             "nullable": true,
             "readOnly": true
           }
@@ -1402,18 +1401,14 @@
           },
           "icon": {
             "type": "string",
-            "description": "Category icon",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "products": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Product"
             },
-            "description": "The products navigation",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1569,9 +1564,7 @@
           },
           "icon": {
             "type": "string",
-            "description": "The product icon",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "catId": {
             "type": "string",
@@ -1592,9 +1585,7 @@
             "items": {
               "$ref": "#/components/schemas/Gallery"
             },
-            "description": "Gallery navigation",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "dateTime": {
             "type": "string",

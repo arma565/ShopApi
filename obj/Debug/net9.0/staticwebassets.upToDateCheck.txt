@@ -447,3 +447,4 @@ wwwroot\images\home\news\417 (1).jpg
 wwwroot\images\news\1000012819.jpg
 wwwroot\images\news\1000013230.jpg
 wwwroot\images\news\417.jpg
+wwwroot\images\auth\79e6a5da-f533-4c00-a6db-0c973707cea2.png
