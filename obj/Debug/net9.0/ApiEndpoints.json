@@ -1,5 +1,225 @@
 [
   {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "GetUserByUserName",
+    "RelativePath": "Auth/user/{userName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RealEstate.Models.Authentication.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "ChangePassword",
+    "RelativePath": "Auth/user/change/password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RealEstate.Models.Authentication.Change",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "DeleteAllUsers",
+    "RelativePath": "Auth/user/delete-all",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "DeleteUser",
+    "RelativePath": "Auth/user/delete/{userName}/{password}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "DownloadProfileImage",
+    "RelativePath": "Auth/user/download/{userName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "EditUserProfile",
+    "RelativePath": "Auth/user/edit/profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RealEstate.Models.Authentication.UserProfile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "LoginUser",
+    "RelativePath": "Auth/user/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RealEstate.Models.Authentication.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "RecoverUser",
+    "RelativePath": "Auth/user/recovery/account",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "recovery",
+        "Type": "RealEstate.Models.Authentication.Recovery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "RegisterUser",
+    "RelativePath": "Auth/user/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RealEstate.Models.Authentication.Register",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "ResetPassword",
+    "RelativePath": "Auth/user/reset/password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RealEstate.Models.Authentication.Reset",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "UploadProfileImage",
+    "RelativePath": "Auth/user/upload/{userName}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RealEstate.Controllers.AuthController",
+    "Method": "GetAllUsers",
+    "RelativePath": "Auth/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[RealEstate.Models.Authentication.User, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Shop.Controllers.ShopController",
     "Method": "UploadCategoryImage",
     "RelativePath": "Shop/category/upload/{id}",
@@ -88,7 +308,7 @@
     "Parameters": [
       {
         "Name": "brand",
-        "Type": "Shop.Model.Brands.Brand",
+        "Type": "Shop.Model.Shop.Brands.Brand",
         "IsRequired": true
       }
     ],
@@ -104,7 +324,7 @@
     "Parameters": [
       {
         "Name": "category",
-        "Type": "Shop.Model.Categories.Category",
+        "Type": "Shop.Model.Shop.Categories.Category",
         "IsRequired": true
       }
     ],
@@ -120,7 +340,7 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "Shop.Model.Products.Product",
+        "Type": "Shop.Model.Shop.Products.Product",
         "IsRequired": true
       }
     ],
@@ -246,7 +466,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shop.Model.Brands.Brand",
+        "Type": "Shop.Model.Shop.Brands.Brand",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -266,7 +486,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Shop.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -286,7 +506,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Categories.Category, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Shop.Categories.Category, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -312,7 +532,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shop.Model.Brands.Brand",
+        "Type": "Shop.Model.Shop.Brands.Brand",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -338,7 +558,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shop.Model.ProductCategories.Gallery.Gallery",
+        "Type": "Shop.Model.Shop.ProductCategories.Gallery.Gallery",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -358,7 +578,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Shop.Model.Main.Home",
+        "Type": "Shop.Model.Shop.Main.Home",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -384,7 +604,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shop.Model.Products.Product",
+        "Type": "Shop.Model.Shop.Products.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -404,7 +624,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.CategoryProducts.ProductCategory, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Shop.ProductCategories.ProductCategory, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -424,7 +644,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Shop.Brands.Brand, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -450,7 +670,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Products.Product, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shop.Model.Shop.Products.Product, Shop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -470,7 +690,7 @@
     "Parameters": [
       {
         "Name": "brand",
-        "Type": "Shop.Model.Brands.Brand",
+        "Type": "Shop.Model.Shop.Brands.Brand",
         "IsRequired": true
       }
     ],
@@ -486,7 +706,7 @@
     "Parameters": [
       {
         "Name": "category",
-        "Type": "Shop.Model.Categories.Category",
+        "Type": "Shop.Model.Shop.Categories.Category",
         "IsRequired": true
       }
     ],
@@ -502,7 +722,7 @@
     "Parameters": [
       {
         "Name": "gallery",
-        "Type": "Shop.Model.ProductCategories.Gallery.Gallery",
+        "Type": "Shop.Model.Shop.ProductCategories.Gallery.Gallery",
         "IsRequired": true
       }
     ],
@@ -518,7 +738,7 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "Shop.Model.Products.Product",
+        "Type": "Shop.Model.Shop.Products.Product",
         "IsRequired": true
       }
     ],

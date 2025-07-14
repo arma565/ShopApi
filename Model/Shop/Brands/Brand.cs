@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shop.Model.Products;
+using Shop.Model.Shop.Products;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Shop.Model.Brands
+namespace Shop.Model.Shop.Brands
 {
     public class Brand
     {

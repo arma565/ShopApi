@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using Shop.Model.Brands;
-using Shop.Model.Categories;
-using Shop.Model.ProductCategories.Gallery;
+using Shop.Model.Shop.Brands;
+using Shop.Model.Shop.Categories;
+using Shop.Model.Shop.ProductCategories.Gallery;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Shop.Model.Products
+namespace Shop.Model.Shop.Products
 {
     public class Product
     {

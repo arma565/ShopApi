@@ -1,7 +1,7 @@
-using Shop.Model.Products;
+using Shop.Model.Shop.Products;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shop.Model.ProductCategories.Gallery
+namespace Shop.Model.Shop.ProductCategories.Gallery
 {
     public class Gallery
     {

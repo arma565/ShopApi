@@ -1,8 +1,8 @@
-using Shop.Model.CategoryProducts;
-using Shop.Model.Products;
+using Shop.Model.Shop.ProductCategories;
+using Shop.Model.Shop.Products;
 
 
-namespace Shop.Model.Main
+namespace Shop.Model.Shop.Main
 {
     public class Home
     {

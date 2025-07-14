@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Shop.Model.Brands;
-using Shop.Model.Categories;
-using Shop.Model.CategoryProducts;
-using Shop.Model.Main;
-using Shop.Model.ProductCategories.Gallery;
-using Shop.Model.Products;
+using Shop.Model.Shop.Brands;
+using Shop.Model.Shop.Categories;
+using Shop.Model.Shop.Main;
+using Shop.Model.Shop.ProductCategories;
+using Shop.Model.Shop.ProductCategories.Gallery;
+using Shop.Model.Shop.Products;
 using Shop.Service;
 
 namespace Shop.Controllers

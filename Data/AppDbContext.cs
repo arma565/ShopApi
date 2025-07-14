@@ -1,16 +1,16 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Shop.Model.Brands;
-using Shop.Model.Categories;
-using Shop.Model.ProductCategories.Gallery;
-using Shop.Model.Products;
+using RealEstate.Data;
+using Shop.Model.Shop.Brands;
+using Shop.Model.Shop.Categories;
+using Shop.Model.Shop.ProductCategories.Gallery;
+using Shop.Model.Shop.Products;
 
 namespace Shop.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<UserProfileIdentity>(options)
     {
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
         public DbSet<Brand> Brands { set; get; }
         public DbSet<Category> Categories { set; get; }
         public DbSet<Gallery> Galleries { set; get; }
@@ -36,7 +36,11 @@ namespace Shop.Data
             .HasForeignKey(p => p.BrandId)
             .HasPrincipalKey(b => b.Id);
 
-            base.OnModelCreating(builder);
+            builder.Entity<IdentityUserLogin<string>>().HasNoKey();
+
+            builder.Entity<IdentityUserRole<string>>().HasNoKey();
+
+            builder.Entity<IdentityUserToken<string>>().HasNoKey();
         }
     }
 }

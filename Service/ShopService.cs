@@ -1,19 +1,200 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using RealEstate.Data;
+using RealEstate.Models.Authentication;
 using Shop.Data;
-using Shop.Model.Brands;
-using Shop.Model.Categories;
-using Shop.Model.CategoryProducts;
-using Shop.Model.Main;
-using Shop.Model.ProductCategories.Gallery;
-using Shop.Model.Products;
+using Shop.Model.Shop.Brands;
+using Shop.Model.Shop.Categories;
+using Shop.Model.Shop.Main;
+using Shop.Model.Shop.ProductCategories;
+using Shop.Model.Shop.ProductCategories.Gallery;
+using Shop.Model.Shop.Products;
 
 namespace Shop.Service
 {
-    public class ShopService(AppDbContext context)
+    public class ShopService(AppDbContext context, UserManager<UserProfileIdentity> userManager,
+SignInManager<UserProfileIdentity> signInManager,
+ImageService imageService)
     {
         private readonly AppDbContext _context = context;
+        private readonly UserManager<UserProfileIdentity> _userManager = userManager;
+        private readonly SignInManager<UserProfileIdentity> _signInManager = signInManager;
+        private readonly ImageService _imageService = imageService;
 
-        #region GetAll
+        #region Authentication
+
+        /// <summary>
+        /// This function return all registered users
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            var users = await _userManager.Users.AsNoTracking().ToListAsync().ConfigureAwait(false);
+            var usersList = new List<User>();
+            foreach (var userInUserManager in users)
+            {
+                var user = new User
+                {
+                    Id = userInUserManager.Id,
+                    ProfileImagePath = userInUserManager.ProfileImageName,
+                    FirstName = userInUserManager.FirstName!,
+                    LastName = userInUserManager.LastName!,
+                    AcceptTerms = userInUserManager.AcceptTerms,
+                    UserName = userInUserManager.UserName ?? "",
+                    Email = userInUserManager.Email ?? "",
+                    PhoneNumber = userInUserManager.PhoneNumber ?? "",
+                };
+                usersList.Add(user);
+            }
+            return [.. usersList];
+        }
+
+        /// <summary>
+        /// This function register a user in database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<IdentityResult> RegisterUser(Register model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+            else
+                return await _userManager.CreateAsync(
+                       new UserProfileIdentity
+                       {
+                           UserName = model.UserName,
+                           Email = model.Email,
+                           AcceptTerms = model.AcceptTerms,
+                       },
+                       model.Password
+                   ).ConfigureAwait(false);
+        }
+
+
+        /// <summary>
+        /// This function delete all users
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteAllUsers()
+        {
+            var users = await _userManager.Users.ToListAsync().ConfigureAwait(false);
+            foreach (var user in users)
+            {
+                await _userManager.DeleteAsync(user).ConfigureAwait(false);
+            }
+            var rootFile = Path.Combine("wwwroot/images/auth");
+            if (!(Directory.Exists(rootFile))){
+                return;
+            }
+            var files = Directory.GetFiles(rootFile);
+            foreach (var file in files)
+            {
+                File.Delete(file);
+            }
+        }
+
+        /// <summary>
+        /// This function Delete a user from identity store
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<IdentityResult> DeleteUser(UserProfileIdentity user)
+        {
+            var environmentPath = _imageService.GetLocalImagesFullPath("auth");
+
+            var filePath = Path.Combine(environmentPath, user?.ProfileImageName ?? "");
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            return await _userManager.DeleteAsync(user!).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Login user using username and password
+        /// </summary>
+        /// <param name="model">
+        /// Login model containing username and password
+        /// </param>
+        /// <returns></returns>
+        public async Task<SignInResult> LoginUser(Login model)
+        {
+            if (model is null)
+            {
+                return SignInResult.Failed;
+            }
+            return await _signInManager.PasswordSignInAsync(
+                model.UserName,
+                model.Password,
+                false,
+                false
+            ).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// This function create a token to reset password
+        /// </summary>
+        /// <param name="user">
+        /// User account which needs reset
+        /// </param>
+        /// <returns></returns>
+        public async Task<string> GenerateTokenToRecoverUser(UserProfileIdentity user)
+        {
+            return await _userManager.GeneratePasswordResetTokenAsync(user).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Reset the user account password
+        /// </summary>
+        /// <param name="user">
+        /// user account
+        /// </param>
+        /// <param name="token">
+        /// Tokeen reset password
+        /// </param>
+        /// <param name="newPassword">
+        /// new password of account
+        /// </param>
+        /// <returns></returns>
+        public async Task<IdentityResult> ResetPassword(
+            UserProfileIdentity user,
+            string token,
+            string newPassword
+        )
+        {
+            return await _userManager.ResetPasswordAsync(user, token, newPassword).ConfigureAwait(false);
+        }
+
+        public async Task<IdentityResult> ChangePassword(UserProfileIdentity user, string currentPassword, string newPassword)
+        {
+            return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// This function is useful to edit profile
+        /// </summary>
+        /// <param name="user">
+        /// user account
+        /// </param>
+        /// <returns></returns>
+        public async Task<IdentityResult> EditUserProfile(UserProfileIdentity user)
+        {
+            return await _userManager.UpdateAsync(user).ConfigureAwait(false);
+        }
+
+        public async Task<UserProfileIdentity?> FindUserByEmail(string email)
+        {
+            return await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
+        }
+
+        public async Task<UserProfileIdentity?> FindUserByUserName(string userName)
+        {
+            return await _userManager.FindByNameAsync(userName).ConfigureAwait(false);
+        }
+        #endregion
+
+        #region Shop
 
         /// <summary>
         /// Get Brands from database
@@ -42,7 +223,8 @@ namespace Shop.Service
         {
             var newProducts = await _context.Products.Where(p => p.DateTime >= DateTime.Now).OrderByDescending(p => p.DateTime).AsNoTracking().ToListAsync();
             var categories = await _context.Categories.Include(c => c.Products).AsNoTracking().ToListAsync();
-            var productCategoryList = categories.Select(category => new ProductCategory {
+            var productCategoryList = categories.Select(category => new ProductCategory
+            {
                 CatName = category.Title,
                 Products = category.Products
             }).ToList();
@@ -71,9 +253,6 @@ namespace Shop.Service
         /// Return list of products
         /// </returns>
         public async Task<IEnumerable<Product>> GetProducts() => [.. await _context.Products.AsNoTracking().ToListAsync()];
-        #endregion
-
-        #region GetUsingID
 
         /// <summary>
         /// Get brand using id
@@ -164,17 +343,11 @@ namespace Shop.Service
         /// Return products using catId
         /// </returns>
         public async Task<IEnumerable<Product>> GetProducts(Guid catId) => await _context.Products.Where(p => p.CatId == catId).AsNoTracking().ToListAsync();
-        #endregion
-
-        #region ValidateAvailablity
 
         public async Task<bool> IsBrandAvailable(Brand brand) => await _context.Brands.AsNoTracking().ContainsAsync(brand);
         public async Task<bool> IsCategoryAvailable(Category category) => await _context.Categories.AsNoTracking().ContainsAsync(category);
         public async Task<bool> IsGalleryAvailable(Gallery gallery) => await _context.Galleries.AsNoTracking().ContainsAsync(gallery);
         public async Task<bool> IsProductAvailable(Product product) => await _context.Products.AsNoTracking().ContainsAsync(product);
-        #endregion
-
-        #region Add
 
         /// <summary>
         /// Add a brand to database
@@ -237,9 +410,6 @@ namespace Shop.Service
             await _context.SaveChangesAsync();
             return product;
         }
-        #endregion
-
-        #region Update
 
         /// <summary>
         /// Update a brand
@@ -288,9 +458,6 @@ namespace Shop.Service
             _context.Products.Update(product);
             await _context.SaveChangesAsync();
         }
-        #endregion
-
-        #region Delete
 
         /// <summary>
         /// Delete a brand

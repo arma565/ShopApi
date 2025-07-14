@@ -1,8 +1,8 @@
-using Shop.Model.Products;
+using Shop.Model.Shop.Products;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shop.Model.Categories
+namespace Shop.Model.Shop.Categories
 {
     public class Category
     {

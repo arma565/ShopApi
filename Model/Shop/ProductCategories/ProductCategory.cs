@@ -1,7 +1,6 @@
+using Shop.Model.Shop.Products;
 
-using Shop.Model.Products;
-
-namespace Shop.Model.CategoryProducts
+namespace Shop.Model.Shop.ProductCategories
 {
     public class ProductCategory
     {
